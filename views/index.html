@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>BMI Калькулятор</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>BMI Калькулятор</h1>
+    <form action="/calculate-bmi" method="POST" onsubmit="return validateForm()">
+      <label for="weight">Вес (в кг):</label>
+      <input type="number" id="weight" name="weight" step="0.1" required>
+
+      <label for="height">Рост (в метрах):</label>
+      <input type="number" id="height" name="height" step="0.01" required>
+
+      <button type="submit">Рассчитать</button>
+    </form>
+    <p id="error" class="error"></p>
+  </div>
+
+  <script>
+    function validateForm() {
+      const weight = parseFloat(document.getElementById('weight').value);
+      const height = parseFloat(document.getElementById('height').value);
+      if (weight <= 0 || height <= 0) {
+        document.getElementById('error').textContent = 'Введите положительные значения веса и роста.';
+        return false;
+      }
+      return true;
+    }
+  </script>
+</body>
+</html>
